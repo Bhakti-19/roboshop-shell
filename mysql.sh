@@ -1,3 +1,6 @@
+COMPONENT=mysql
+source common.sh
+
 if [ -z "$1"]; then
   echo Input argument password is needed
   exit
@@ -19,10 +22,14 @@ DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log |awk'{print $
 cat /tmp/root-pass-sql | mysql --connect-expired-password -uroot -p"${DEFAULT_PASSWORD}"
 fi
 
+echo "show plugins" | mysql -uroot p${ROBOSHOP_MYSQL_PASSWORD} | grep validate_password &>>$LOG
+if [$? -eq 0 ] ; then
+  echo "uninstall plugin validate_password;" | mysql -uroot p${ROBOSHOP_MYSQL_PASSWORD} &>>$LOG
+  fi
 #grep temp /var/log/mysqld.log
 # mysql_secure_installation
 # mysql -uroot -pRoboShop@1
-#uninstall plugin validate_password;
+
 # curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
 # cd /tmp
 # unzip mysql.zip

@@ -1,6 +1,10 @@
-yum install nginx -y
+COMPONENT=frontend
+source common.sh
 
- curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
+yum install nginx -y &>>$LOG
+stat $?
+
+ curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" &>>$LOG
 
  cd /usr/share/nginx/html
  rm -rf *

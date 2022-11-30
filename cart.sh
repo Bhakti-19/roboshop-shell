@@ -8,7 +8,12 @@ STAT $?
 
 PRINT "Install nodejs"
 yum install nodejs -y &>>$LOG
+
+id roboshop &>>$LOG
+if [$? -ne 0] ; then
 useradd roboshop &>>$LOG
+fi
+
  curl -s -L -o /tmp/cart.zip "https://github.com/roboshop-devops-project/cart/archive/main.zip" &>>$LOG
  cd /home/roboshop &>>$LOG
  rm -rf cart &>>$LOG
