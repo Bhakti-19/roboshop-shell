@@ -1,11 +1,26 @@
 COMPONENT=redis
 source common.sh
 
-dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
-dnf module enable redis:remi-6.2 -y
-yum install redis -y
+PRINT "Install Redis Repo"
+dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>$LOG
+STAT $?
 
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf /etc/redis/redis.conf
+PRINT "Enable Redis Repo 6.2"
+dnf module enable redis:remi-6.2 -y &>>$LOG
+STAT $?
 
-systemctl enable redis
-systemctl restart redis
+PRINT "Install Redis"
+yum install redis -y &>>$LOG
+STAT $?
+
+PRINT "Update Redis Listen Address"
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf /etc/redis/redis.conf &>>$LOG
+STAT $?
+
+PRINT "Enable Redis Service"
+systemctl enable redis &>>$LOG
+STAT $?
+
+PRINT "Start Redis Service"
+systemctl restart redis &>>$LOG
+STAT $?
