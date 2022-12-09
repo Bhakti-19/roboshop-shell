@@ -39,7 +39,7 @@ if [ -z "$1" ]; then
   echo Input Component Name is Needed
   exit 1
   fi
-component= $1
+component=$1
   COMPONENT="${env}-${component}"
   create_ec2
 
