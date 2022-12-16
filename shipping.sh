@@ -1,4 +1,3 @@
  COMPONENT=shipping
  source common.sh
-
- JAVA
+JAVA
