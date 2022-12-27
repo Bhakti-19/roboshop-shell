@@ -43,7 +43,7 @@ DOWNLOAD_APP_CODE() {
 
 SYSTEMD_SETUP() {
   PRINT "Configure Endpoints for SystemD Configuration"
-  sed -i -e 's/MONGO_DNSNAME/dev-mongodb.Bhakti-19.link/' -e 's/REDIS_ENDPOINT/dev-redis.Bhakti-19.link/' -e 's/CATALOGUE_ENDPOINT/dev-catalogue.Bhakti-19.link/' -e 's/MONGO_ENDPOINT/dev-mongodb.Bhakti-19.link/' -e 's/CARTENDPOINT/dev-cart.Bhakti-19.link/' -e 's/DBHOST/dev-mysql.Bhakti-19.link/' -e 's/AMQPHOST/dev-rabbitmq.Bhakti-19.link/' -e 's/CARTHOST/dev-cart.Bhakti-19.link/' -e 's/USERHOST/dev-user.Bhakti-19.link/' /home/roboshop/${COMPONENT}/systemd.service &>>$LOG
+  sed -i -e 's/MONGO_DNSNAME/dev-mongodb.Bhakti-19.net/' -e 's/REDIS_ENDPOINT/dev-redis.Bhakti-19.net/' -e 's/CATALOGUE_ENDPOINT/dev-catalogue.Bhakti-19.net/' -e 's/MONGO_ENDPOINT/dev-mongodb.Bhakti-19.net/' -e 's/CARTENDPOINT/dev-cart.Bhakti-19.net/' -e 's/DBHOST/dev-mysql.Bhakti-19.net/' -e 's/AMQPHOST/dev-rabbitmq.Bhakti-19.net/' -e 's/CARTHOST/dev-cart.Bhakti-19.net/' -e 's/USERHOST/dev-user.Bhakti-19.net/' /home/roboshop/${COMPONENT}/systemd.service &>>$LOG
   mv /home/roboshop/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
   STAT $?
 
